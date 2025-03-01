@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
 
         Vector3 moveDirection = (cameraForward * inputDirection.y + cameraRight * inputDirection.x).normalized;
-        playerRb.AddForce(moveDirection * speed, ForceMode.Force);
+        playerRb.linearVelocity = new Vector3(moveDirection.x * speed, playerRb.linearVelocity.y, moveDirection.z * speed);
     }
     private void OnJump(){
         if(isGrounded){
