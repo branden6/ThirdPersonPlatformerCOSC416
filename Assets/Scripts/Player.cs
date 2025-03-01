@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField]private float speed = 5.0f;
     [SerializeField]private float jumpHeight = 5.0f;
     [SerializeField]private InputManager inputManager;
+    [SerializeField] Transform camera;
     private bool isGrounded;
     
 
@@ -18,9 +19,18 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void MovePlayer(Vector2 direction){
-        Vector3 moveDirection = new(direction.x, 0f, direction.y);
-        playerRb.AddForce(moveDirection * speed);
+    private void MovePlayer(Vector2 inputDirection){
+        Vector3 cameraForward = camera.forward;
+        Vector3 cameraRight = camera.right;
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+
+        Vector3 moveDirection = (cameraForward * inputDirection.y + cameraRight * inputDirection.x).normalized;
+        playerRb.AddForce(moveDirection * speed, ForceMode.Force);
     }
     private void OnJump(){
         if(isGrounded){
