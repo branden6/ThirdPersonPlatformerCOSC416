@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]private InputManager inputManager;
     [SerializeField] Transform camera;
     private bool isGrounded;
+
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,9 +20,11 @@ public class Player : MonoBehaviour
         inputManager.OnJump.AddListener(OnJump);
         playerRb = GetComponent<Rigidbody>();
     }
+   
 
     // Update is called once per frame
     private void MovePlayer(Vector2 inputDirection){
+
         Vector3 cameraForward = camera.forward;
         Vector3 cameraRight = camera.right;
         cameraForward.y = 0f;
