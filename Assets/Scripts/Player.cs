@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
         inputManager.OnJump.AddListener(OnJump);
         playerRb = GetComponent<Rigidbody>();
     }
-   
-
     // Update is called once per frame
     private void MovePlayer(Vector2 inputDirection){
 
@@ -36,6 +34,8 @@ public class Player : MonoBehaviour
 
         Vector3 moveDirection = (cameraForward * inputDirection.y + cameraRight * inputDirection.x).normalized;
         playerRb.linearVelocity = new Vector3(moveDirection.x * speed, playerRb.linearVelocity.y, moveDirection.z * speed);
+
+        
     }
     private void OnJump(){
         if(isGrounded || (numOfJumps < maxJumps)){
