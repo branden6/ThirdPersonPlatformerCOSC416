@@ -6,6 +6,7 @@ Functions implemented:
 - jump
 - double jump
 - boxes (obstacles)
+- invisible walls so that player can not leave the playing area
 - rotating coin with a coin asset
 - UI to increment score when you pick up a coin
 - coins destroyed once picked up
