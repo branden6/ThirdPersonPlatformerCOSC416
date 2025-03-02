@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
     private Rigidbody playerRb;
     [SerializeField]private float speed = 5.0f;
     [SerializeField]private float jumpHeight = 5.0f;
+    private float numOfJumps = 0;
+    [SerializeField]private float maxJumps = 2;
     [SerializeField]private InputManager inputManager;
     [SerializeField] Transform camera;
     private bool isGrounded;
@@ -33,8 +35,9 @@ public class Player : MonoBehaviour
         playerRb.linearVelocity = new Vector3(moveDirection.x * speed, playerRb.linearVelocity.y, moveDirection.z * speed);
     }
     private void OnJump(){
-        if(isGrounded){
+        if(isGrounded || (numOfJumps < maxJumps)){
             playerRb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            numOfJumps++;
             isGrounded = false;
         }
         else
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision){
         if(collision.gameObject.CompareTag("Ground")){
             isGrounded = true;
+            numOfJumps = 0;
         }
     }
 }

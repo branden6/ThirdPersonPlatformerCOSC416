@@ -6,11 +6,13 @@ public class InputManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public UnityEvent<Vector2> OnMove = new UnityEvent<Vector2>();
     public UnityEvent OnJump = new UnityEvent();
+    public UnityEvent OnResetPressed = new UnityEvent();
 
 
     // Update is called once per frame
     void Update()
     {
+
         Vector2 input = Vector2.zero;
         if (Input.GetKey(KeyCode.W)){
             input += Vector2.up;
@@ -28,6 +30,10 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)){
             OnJump?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)){
+            OnResetPressed?.Invoke();
         }
     }
 }

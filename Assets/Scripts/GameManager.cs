@@ -16,6 +16,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     public void IncrementScore(){
         score++;
-        scoreText.text = "Score: " + score;
+        scoreText.text = $"Score: {score}";
     }
 }
